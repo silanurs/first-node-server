@@ -1,0 +1,11 @@
+{
+  "name": "basic-informational-site",
+  "version": "1.0.0",
+  "description": "basic informational site created with nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "silanur sari",
+  "license": "ISC"
+}
