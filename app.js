@@ -1,21 +1,33 @@
-const http = require('http');
-const fs = require('fs');
-http.createServer(function (req, res) {
-  fs.readFile("index.html", (err, data)=>{
-    if(err){
-      console.error(err);
-      return;
-    }
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(data)
-    return res.end()
-  })
-  console.log(req.url)
- 
-  if(req.url === "/about"){
-    fs.readFile("about.html")}
-  if(req.url==="/contact-me"){
-    fs.readFile("contact-me.html")
+const http = require('node:http');
+const fs = require('node:fs');
+
+const server = http.createServer();
+server.on('request', (req, res)=>{
+  if(req.url==="/" || req.url==="/index"){
+    fs.readFile("index.html", (err,data)=>{
+      res.writeHead(200, {"Content-type": "text/html"})
+      res.write(data);
+      res.end()
+    })
+  } else if (req.url === "/about"){
+    fs.readFile("about.html", (err,data)=>{
+      res.writeHead(200, {"Content-type": "text/html"})
+      res.write(data);
+      res.end()
+    })
+  } else if (req.url==="/contact-me"){
+    fs.readFile("contact-me.html", (err,data)=>{
+      res.writeHead(200, {"Content-type": "text/html"})
+      res.write(data);
+      res.end()
+    })
+  } else {
+    fs.readFile("404.html", (err,data)=>{
+      res.writeHead(404, {"Content-type": "text/html"})
+      res.write(data);
+      res.end()
+    })
   }
-       
-}).listen(8080);
+}
+)
+server.listen(8080)
