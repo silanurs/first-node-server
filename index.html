@@ -7,14 +7,16 @@
 </head>
 <body>
     <nav>
-        <a href="/index">Index</a>
-        <a href="/about">About</a>
-        <a href="/contact-me">Contact Me</a>
+        <a href="index">Index</a>
+        <a href="about">About</a>
+        <a href="contact-me">Contact Me</a>
     </nav>
     <ul>
         <li>This website is running on a NodeJS server.</li>
         <li>The server handles requests through url and sends responses in HTML </li>
         <li>Every different url requests a different page and the server routes the request to the correct document.</li>
+        <li>If no file can be found matching the requested url a 404 error is thrown.</li>
+        <li>Instead of this crashing the server, it routes the bad request to a custom <a href="404"> 404 page</a>.</li>
       </ul>
     </div>
 </body>
