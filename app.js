@@ -1,16 +1,26 @@
-const http = require('node:http');
-const fs = require('node:fs');
+const express = require("express");
+const app = express();
+const path = require("path");
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
-const server = http.createServer();
-server.on('request', (req, res)=>{
-  const fileName=req.url==="/" || req.url ==="/index" ? "index.html" :
-   req.url==="/about" ? "about.html" : req.url==="/contact-me" ? "contact-me.html" : "404.html"
-   fs.readFile(fileName, (err,data) =>{
-    res.writeHead(200, {"Content-type": "text/html"})
-    res.write(data);
-    res.end()
-   })
-}
-)
-server.listen(8080)
+app.get("/index", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/about", (req, res) => {
+  res.sendFile(path.join(__dirname, "about.html"));
+});
+
+app.get("/contact-me", (req, res) => {
+  res.sendFile(path.join(__dirname, "contact-me.html"));
+});
+
+// Handling 404 Not Found
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "404.html"));
+});
+
+app.listen(8080)
